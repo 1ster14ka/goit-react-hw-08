@@ -4,8 +4,9 @@ import { useId } from "react";
 import * as Yup from "yup";
 import css from "../ContactForm/ContactForm.module.css";
 import { useDispatch } from "react-redux";
-import { addContacts } from "../../redux/contactsSlice";
-import { addContact } from "../../redux/contactsOps";
+// import { addContacts } from "../../redux/contactsSlice";
+import { addContact } from "../../redux/contacts/contactsOps";
+// import { addContact } from "../../redux/contactsOps";
 
 const ContactForm = () => {
   const nameId = useId();
