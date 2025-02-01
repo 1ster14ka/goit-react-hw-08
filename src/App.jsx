@@ -17,21 +17,14 @@ import PhoneBook from "./components/PhoneBook/PhoneBook";
 import PablicRoute from "./PablicRoute";
 
 function App() {
-  // const dispatch = useDispatch();
-  // useEffect(() => {
-  //   dispatch(fetchContacts());
-  // }, [dispatch]);
-
   const isLoggedIn = useSelector(selectIsLoggedIn);
 
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(refreshUser());
-    // dispatch(fetchContacts());
   }, [dispatch]);
 
   const isRefresh = useSelector(selectIsRefresh);
-  // console.log(isRefresh);
 
   return isRefresh ? null : (
     <>

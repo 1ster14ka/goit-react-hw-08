@@ -14,7 +14,6 @@ const Login = () => {
   const dispatch = useDispatch();
 
   const handleSubmit = (values, actions) => {
-    // console.log(values);
     actions.resetForm();
     try {
       dispatch(login(values)).unwrap().then(navigate("/contacts"));

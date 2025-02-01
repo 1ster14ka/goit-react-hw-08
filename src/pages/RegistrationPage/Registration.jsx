@@ -6,10 +6,9 @@ import { useNavigate } from "react-router-dom";
 import css from "./Registration.module.css";
 
 const Registration = () => {
-  const user = useSelector(selectUser);
+  //   const user = useSelector(selectUser);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  console.log(user);
 
   const initialValues = {
     name: "",
@@ -25,8 +24,6 @@ const Registration = () => {
     } catch (error) {
       console.log(error.message);
     }
-    // console.log(values);
-    // console.log(user);
   };
 
   return (
