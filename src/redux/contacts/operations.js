@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import { setToken } from "../auth/authOps";
+import { setToken } from "../auth/operations";
 import "izitoast/dist/css/iziToast.min.css";
 import iziToast from "izitoast";
 
@@ -29,15 +29,6 @@ export const addContact = createAsyncThunk(
 
     setToken(token);
 
-    if (!user.name || !user.email) {
-      iziToast.show({
-        title: "Error",
-        message: "Please fill in all fields",
-        position: "topRight",
-        color: "red",
-      });
-      return thunkAPI.rejectWithValue("Please fill in all fields");
-    }
     try {
       const { data } = await axios.post("/contacts", user);
 
@@ -49,6 +40,7 @@ export const addContact = createAsyncThunk(
         position: "topRight",
         color: "red",
       });
+
       return thunkAPI.rejectWithValue(error.message);
     }
   }

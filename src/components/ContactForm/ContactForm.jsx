@@ -3,7 +3,8 @@ import { useId } from "react";
 import * as Yup from "yup";
 import css from "../ContactForm/ContactForm.module.css";
 import { useDispatch } from "react-redux";
-import { addContact } from "../../redux/contacts/contactsOps";
+import { addContact } from "../../redux/contacts/operations";
+import iziToast from "izitoast";
 
 const ContactForm = () => {
   const nameId = useId();
@@ -22,6 +23,16 @@ const ContactForm = () => {
   };
 
   function handleSubmit(values, actions) {
+    if (!values.name || !values.number) {
+      iziToast.show({
+        title: "Error",
+        message: "Please fill in all fields",
+        position: "topCenter",
+        color: "red",
+      });
+      return;
+    }
+
     actions.resetForm();
     const newContact = {
       name: values.name,
@@ -48,7 +59,7 @@ const ContactForm = () => {
           id={numberId}
           className={css.formInput}
         />
-        <ErrorMessage name="number" component="span" />
+        {/* <ErrorMessage name="number" component="span" /> */}
         <button className={css.formBtn} type="submit">
           Add
         </button>

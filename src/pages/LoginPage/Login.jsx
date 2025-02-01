@@ -1,6 +1,6 @@
 import { Field, Form, Formik } from "formik";
 import { useDispatch } from "react-redux";
-import { login } from "../../redux/auth/authOps";
+import { login } from "../../redux/auth/operations";
 import { useNavigate } from "react-router-dom";
 import css from "../RegistrationPage/Registration.module.css";
 
@@ -13,10 +13,12 @@ const Login = () => {
 
   const dispatch = useDispatch();
 
-  const handleSubmit = (values, actions) => {
-    actions.resetForm();
+  const handleSubmit = async (values, actions) => {
     try {
-      dispatch(login(values)).unwrap().then(navigate("/contacts"));
+      await dispatch(login(values)).unwrap();
+      actions.resetForm();
+
+      navigate("/contacts");
     } catch (error) {}
   };
 

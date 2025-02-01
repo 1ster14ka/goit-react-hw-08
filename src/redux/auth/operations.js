@@ -1,5 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import iziToast from "izitoast";
 
 axios.defaults.baseURL = "https://connections-api.goit.global";
 
@@ -19,6 +20,17 @@ export const registration = createAsyncThunk(
       setToken(data.token);
       return data;
     } catch (error) {
+      if (error.response && error.response.status === 400) {
+        iziToast.show({
+          title: "Error",
+          message: "User is already registered or empty fields",
+          position: "topCenter",
+          color: "red",
+        });
+        return thunkAPI.rejectWithValue(
+          "User is already registered or empty fields"
+        );
+      }
       return thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -31,6 +43,23 @@ export const login = createAsyncThunk("auth/login", async (user, thunkAPI) => {
 
     return data;
   } catch (error) {
+    // console.log(error);
+    if (error.response && error.response.status === 400) {
+      iziToast.show({
+        title: "Error",
+        message: "Invalid credentials or empty fields",
+        position: "topCenter",
+        color: "red",
+      });
+      return thunkAPI.rejectWithValue("Invalid credentials or empty fields");
+    }
+    iziToast.show({
+      title: "Error",
+      message: "Something went wrong. Please try again.",
+      position: "topCenter",
+      color: "red",
+    });
+
     return thunkAPI.rejectWithValue(error.message);
   }
 });

@@ -1,7 +1,7 @@
 import { Field, Form, Formik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
-import { selectUser } from "../../redux/auth/selectorsAuth";
-import { registration } from "../../redux/auth/authOps";
+import { selectUser } from "../../redux/auth/selectors";
+import { registration } from "../../redux/auth/operations";
 import { useNavigate } from "react-router-dom";
 import css from "./Registration.module.css";
 
@@ -16,13 +16,14 @@ const Registration = () => {
     password: "",
   };
 
-  const handleSubmit = (values, actions) => {
-    actions.resetForm();
-
+  const handleSubmit = async (values, actions) => {
     try {
-      dispatch(registration(values)).unwrap().then(navigate("/"));
+      await dispatch(registration(values)).unwrap();
+      actions.resetForm();
+
+      navigate("/");
     } catch (error) {
-      console.log(error.message);
+      //   console.log(error.message);
     }
   };
 
