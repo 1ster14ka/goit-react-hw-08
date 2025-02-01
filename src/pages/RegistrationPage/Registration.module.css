@@ -1,0 +1,86 @@
+/* Контейнер формы */
+.formContainer {
+  max-width: 400px;
+  margin: 30px auto;
+  padding: 20px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+/* Заголовок формы */
+.formTitle {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+/* Основная форма */
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Лейблы */
+.formLabel {
+  font-size: 14px;
+  font-weight: 600;
+  color: #555;
+  text-align: left;
+  margin-bottom: 5px;
+}
+
+/* Поля ввода */
+.formInput {
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+  outline: none;
+  transition: border 0.2s ease-in-out;
+}
+
+.formInput:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+}
+
+/* Кнопка */
+.formButton {
+  margin-top: 15px;
+  padding: 12px;
+  background: #007bff;
+  color: black;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s ease-in-out, transform 0.1s;
+}
+
+.formButton:hover {
+  background: #0056b3;
+}
+
+.formButton:active {
+  transform: scale(0.98);
+}
+
+/* Адаптивность */
+@media (max-width: 500px) {
+  .formContainer {
+    width: 90%;
+    padding: 15px;
+  }
+
+  .formInput {
+    font-size: 14px;
+  }
+
+  .formButton {
+    font-size: 14px;
+  }
+}

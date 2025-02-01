@@ -3,11 +3,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectUser } from "../../redux/auth/selectorsAuth";
 import { registration } from "../../redux/auth/authOps";
 import { useNavigate } from "react-router-dom";
+import css from "./Registration.module.css";
 
 const Registration = () => {
   const user = useSelector(selectUser);
   const dispatch = useDispatch();
-  //   const navigate = useNavigate();
+  const navigate = useNavigate();
   console.log(user);
 
   const initialValues = {
@@ -18,24 +19,30 @@ const Registration = () => {
 
   const handleSubmit = (values, actions) => {
     actions.resetForm();
-    dispatch(registration(values));
-    // navigate("/");
+
+    try {
+      dispatch(registration(values)).unwrap().then(navigate("/"));
+    } catch (error) {
+      console.log(error.message);
+    }
     // console.log(values);
-    console.log(user);
+    // console.log(user);
   };
 
   return (
-    <div>
-      <h2>Regist</h2>
+    <div className={css.formContainer}>
+      <h2 className={css.formTitle}>Regist</h2>
       <Formik initialValues={initialValues} onSubmit={handleSubmit}>
-        <Form>
-          <label>Name</label>
-          <Field type="text" name="name" />
-          <label htmlFor="">Email</label>
-          <Field type="email" name="email" />
-          <label htmlFor="">Password</label>
-          <Field type="password" name="password" />
-          <button type="submit">Submit</button>
+        <Form className={css.form}>
+          <label className={css.formLabel}>Name</label>
+          <Field type="text" name="name" className={css.formInput} />
+          <label className={css.formLabel}>Email</label>
+          <Field type="email" name="email" className={css.formInput} />
+          <label className={css.formLabel}>Password</label>
+          <Field type="password" name="password" className={css.formInput} />
+          <button type="submit" className={css.formButton}>
+            Submit
+          </button>
         </Form>
       </Formik>
     </div>

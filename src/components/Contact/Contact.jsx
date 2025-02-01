@@ -10,11 +10,11 @@ const Contact = ({ data: { name, number, id } }) => {
   return (
     <>
       <div>
-        <div className={css.contactItem}>
+        <div className={css.contactName}>
           <FaUser />
           <h3>{name}</h3>
         </div>
-        <div className={css.contactItem}>
+        <div className={css.contactNumber}>
           <FaPhoneAlt />
           <p>{number}</p>
         </div>
@@ -22,7 +22,7 @@ const Contact = ({ data: { name, number, id } }) => {
       <button
         type="button"
         onClick={() => dispatch(deleteContact(id))}
-        className={css.contactItemBtn}
+        className={css.contactButton}
       >
         Delete
       </button>

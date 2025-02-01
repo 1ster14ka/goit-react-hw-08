@@ -1,13 +1,13 @@
 import AuthNav from "../AuthNav/AuthNav";
 import Navigation from "../Navigation/Navigation";
+import css from "./AppBar.module.css";
 
 const AppBar = () => {
   return (
-    <>
-      <h2>App Bar</h2>
+    <header className={css.header}>
       <Navigation />
       <AuthNav />
-    </>
+    </header>
   );
 };
 

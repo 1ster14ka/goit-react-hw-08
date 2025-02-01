@@ -3,8 +3,9 @@
   flex-direction: column;
   border: solid 2px black;
   padding: 30px;
-  width: 300px;
+  width: 200px;
   gap: 10px;
+  margin: 0 auto;
 }
 
 .formInput {
@@ -17,4 +18,10 @@
   align-items: center;
   justify-content: center;
   margin: 0 auto;
+}
+
+@media screen and (min-width: 768px) {
+  .form {
+    width: 300px;
+  }
 }

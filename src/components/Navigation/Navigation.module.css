@@ -1,0 +1,8 @@
+.navigation {
+  font-size: 20px;
+  color: red;
+}
+
+.navigation:hover {
+  color: blue;
+}
