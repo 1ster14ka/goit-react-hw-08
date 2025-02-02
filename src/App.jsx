@@ -2,20 +2,19 @@ import "./App.css";
 
 import { useDispatch, useSelector } from "react-redux";
 import { lazy, Suspense, useEffect } from "react";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import Layout from "./components/Layout/Layout";
 import { refreshUser } from "./redux/auth/operations";
-import { selectIsLoggedIn, selectIsRefresh } from "./redux/auth/selectors";
+import { selectIsRefresh } from "./redux/auth/selectors";
 import PrivateRoute from "./PrivateRoute";
 import PhoneBook from "./components/PhoneBook/PhoneBook";
-import PablicRoute from "./PablicRoute";
+import RestrictedRoute from "./RestrictedRoute";
 
 function App() {
-  const isLoggedIn = useSelector(selectIsLoggedIn);
   const Home = lazy(() => import("./pages/HomePage/Home"));
-  const Login = lazy(() => import("./pages/LoginPage/Login"));
-  const Registration = lazy(() =>
-    import("./pages/RegistrationPage/Registration")
+  const LoginForm = lazy(() => import("./pages/LoginPage/LoginForm"));
+  const RegistrationForm = lazy(() =>
+    import("./pages/RegistrationPage/RegistrationForm")
   );
 
   const dispatch = useDispatch();
@@ -34,17 +33,17 @@ function App() {
             <Route
               path="/register"
               element={
-                <PablicRoute>
-                  <Registration />
-                </PablicRoute>
+                <RestrictedRoute>
+                  <RegistrationForm />
+                </RestrictedRoute>
               }
             />
             <Route
               path="/login"
               element={
-                <PablicRoute>
-                  <Login />
-                </PablicRoute>
+                <RestrictedRoute>
+                  <LoginForm />
+                </RestrictedRoute>
               }
             />
             <Route

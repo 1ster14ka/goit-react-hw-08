@@ -1,39 +1,32 @@
 import { Field, Form, Formik } from "formik";
-import { useDispatch, useSelector } from "react-redux";
-import { selectUser } from "../../redux/auth/selectors";
-import { registration } from "../../redux/auth/operations";
+import { useDispatch } from "react-redux";
+import { login } from "../../redux/auth/operations";
 import { useNavigate } from "react-router-dom";
-import css from "./Registration.module.css";
+import css from "../RegistrationPage/Registration.module.css";
 
-const Registration = () => {
-  //   const user = useSelector(selectUser);
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-
+const LoginForm = () => {
   const initialValues = {
-    name: "",
     email: "",
     password: "",
   };
+  const navigate = useNavigate();
+
+  const dispatch = useDispatch();
 
   const handleSubmit = async (values, actions) => {
     try {
-      await dispatch(registration(values)).unwrap();
+      await dispatch(login(values)).unwrap();
       actions.resetForm();
 
-      navigate("/");
-    } catch (error) {
-      //   console.log(error.message);
-    }
+      navigate("/contacts");
+    } catch (error) {}
   };
 
   return (
     <div className={css.formContainer}>
-      <h2 className={css.formTitle}>Regist</h2>
+      <h2 className={css.formTitle}>Login</h2>
       <Formik initialValues={initialValues} onSubmit={handleSubmit}>
         <Form className={css.form}>
-          <label className={css.formLabel}>Name</label>
-          <Field type="text" name="name" className={css.formInput} />
           <label className={css.formLabel}>Email</label>
           <Field type="email" name="email" className={css.formInput} />
           <label className={css.formLabel}>Password</label>
@@ -47,4 +40,4 @@ const Registration = () => {
   );
 };
 
-export default Registration;
+export default LoginForm;

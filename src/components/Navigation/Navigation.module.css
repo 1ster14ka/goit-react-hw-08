@@ -6,3 +6,9 @@
 .navigation:hover {
   color: blue;
 }
+
+.navigationWrapp {
+  display: flex;
+  gap: 100px;
+  /* justify-content: space-between; */
+}

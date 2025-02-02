@@ -10,11 +10,7 @@ const AuthNav = () => {
   useEffect(() => {}, [isLoggedIn]);
   return (
     <>
-      {isLoggedIn && (
-        <NavLink to="/contacts" className={css.navigation}>
-          Contacts
-        </NavLink>
-      )}
+      
 
       {!isLoggedIn && (
         <NavLink to="/register" className={css.navigation}>

@@ -39,7 +39,6 @@ const ContactForm = () => {
       number: values.number,
     };
     dispatch(addContact(newContact));
-    console.log(newContact);
   }
 
   return (
