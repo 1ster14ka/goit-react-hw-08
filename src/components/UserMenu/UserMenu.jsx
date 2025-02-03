@@ -14,8 +14,7 @@ const UserMenu = () => {
       <h2>Welcome, {userName}</h2>
       <button
         onClick={() => {
-          navigate("/login");
-          return dispatch(logout());
+          return dispatch(logout()).then(() => navigate("/login"));
         }}
         className={css.navigation}
       >
