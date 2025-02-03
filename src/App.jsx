@@ -9,6 +9,7 @@ import { selectIsRefresh } from "./redux/auth/selectors";
 import PrivateRoute from "./PrivateRoute";
 import PhoneBook from "./components/PhoneBook/PhoneBook";
 import RestrictedRoute from "./RestrictedRoute";
+import NotFound from "./pages/NotFound/NotFound";
 
 function App() {
   const Home = lazy(() => import("./pages/HomePage/Home"));
@@ -54,6 +55,7 @@ function App() {
                 </PrivateRoute>
               }
             />
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </Suspense>
       </Layout>
